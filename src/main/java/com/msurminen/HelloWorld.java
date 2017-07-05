@@ -11,7 +11,7 @@ public class HelloWorld
 {
     public static void main(String[] args) throws IgniteException
     {
-        try (Ignite ignite = Ignition.start("c:/ignite/examples/config/example-ignite.xml"))
+        try (Ignite ignite = Ignition.start("/ignite/examples/config/example-ignite.xml"))
         {
             // Put values in cache.
             IgniteCache<Integer, String> cache = ignite.getOrCreateCache("myCache");
