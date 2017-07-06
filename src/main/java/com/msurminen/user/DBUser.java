@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.ignite.cache.query.annotations.QuerySqlField;
+
 @SuppressWarnings("javadoc")
 @Entity
 @Table(name = "DBUSER")
@@ -16,9 +18,13 @@ public class DBUser implements java.io.Serializable
 {
     private static final long serialVersionUID = 1L;
 
+    @QuerySqlField
     private int userId;
+    @QuerySqlField
     private String username;
+    @QuerySqlField
     private String createdBy;
+    @QuerySqlField
     private Date createdDate;
 
     public DBUser()
