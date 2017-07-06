@@ -1,6 +1,10 @@
 package com.msurminen;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Stream;
+
+import javax.cache.Cache.Entry;
 
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
@@ -39,9 +43,9 @@ public class HelloWorld
             SqlQuery<Long, DBUser> query1 = new SqlQuery<>(DBUser.class, sql);
 
             // Use the query
-            cache.query(query1.setArgs(103)).getAll().stream().map(x -> x.getValue())
-                    .map(x -> x.getUsername() + " @ " + x.getCreatedBy()).map(x -> "name: " + x)
-                    .forEach(System.out::println);
+            List<Entry<Long, DBUser>> res = cache.query(query1.setArgs(103)).getAll();
+            res.stream().map(x -> x.getValue()).map(x -> x.getUsername() + " @ " + x.getCreatedBy())
+                    .map(x -> "name: " + x).forEach(System.out::println);
         }
     }
 
